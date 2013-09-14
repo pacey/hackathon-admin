@@ -30,6 +30,13 @@
         <module name="web" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="app" target="1.7" />
+      <module name="domain" target="1.7" />
+      <module name="hackathon-admin" target="1.7" />
+      <module name="test" target="1.7" />
+      <module name="web" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 
