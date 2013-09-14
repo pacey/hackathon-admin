@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>Hackathon Admin</title>
-		<link rel="stylesheet" href="/resources/css/bootstrap.css">
-		<link rel="stylesheet" href="/resources/css/bootstrap-theme.css">
+		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap.css">
+		<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-theme.css">
 	</head>
 	<body>
 	<div class="container">
