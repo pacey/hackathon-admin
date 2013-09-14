@@ -6,6 +6,12 @@
 		<link rel="stylesheet" href="/resources/css/bootstrap-theme.css">
 	</head>
 	<body>
-		<h1>Hackathon Admin</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Hackathon Admin</h1>
+			</div>
+		</div>
+	</div>
 	</body>
 </html>
