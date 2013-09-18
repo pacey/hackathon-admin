@@ -17,11 +17,12 @@ public class HibernateIdeaDAOTest extends AbstractApplicationTest {
 	@Test
 	public void save(){
 		Date date = new Date();
-		Idea idea = new Idea();
-		idea.setCreateDate(date);
-		idea.setUpdateDate(date);
-		idea.setTitle("Test title");
-		idea.setDescription("Test description");
+		IdeaBuilder ideaBuilder = new IdeaBuilder();
+		Idea idea = ideaBuilder.setCreateDate(date)
+				.setUpdateDate(date)
+				.setTitle("Test title")
+				.setDescription("Test description")
+				.build();
 		hibernateIdeaDAO.saveOrUpdate(idea);
 		assertNotNull(idea.getId());
 	}
