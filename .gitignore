@@ -1,3 +1,4 @@
 workspace.xml
 *.iml
 *.properties
+*.db
