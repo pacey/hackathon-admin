@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
-import static junit.framework.Assert.assertNotNull;
+import static junit.framework.TestCase.assertNotNull;
 
 public class HibernateIdeaDAOTest extends AbstractApplicationTest {
 
