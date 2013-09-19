@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -32,21 +33,26 @@ public class AppConfig {
 
 	@Autowired
 	@Bean(name = "sessionFactory")
-	public SessionFactory getSessionFactory(DataSource dataSource){
+	public SessionFactory getSessionFactory(DataSource dataSource, Properties hibernateProperties){
 		try {
 			LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 			sessionFactoryBean.setDataSource(dataSource);
 			sessionFactoryBean.setPackagesToScan("org.hackers.domain");
-			Properties hibernateProperties = new Properties();
-			hibernateProperties.setProperty("hibernate.connection.driver_class", Driver.class.getName());
-			hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-			hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 			sessionFactoryBean.setHibernateProperties(hibernateProperties);
 			sessionFactoryBean.afterPropertiesSet();
 			return sessionFactoryBean.getObject();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Bean(name = "hibernateProperties")
+	public Properties getHibernateProperties(){
+		Properties hibernateProperties = new Properties();
+		hibernateProperties.setProperty("hibernate.connection.driver_class", Driver.class.getName());
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		return hibernateProperties;
 	}
 
 	@Autowired
