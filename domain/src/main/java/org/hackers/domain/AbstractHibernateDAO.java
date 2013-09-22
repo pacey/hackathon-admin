@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+
 @Transactional(propagation = Propagation.REQUIRED)
 public abstract class AbstractHibernateDAO<DomainType> implements DAO<DomainType> {
 
@@ -34,4 +36,9 @@ public abstract class AbstractHibernateDAO<DomainType> implements DAO<DomainType
 		return (DomainType)sessionFactory.getCurrentSession().get(domainClass.getClass(), id);
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<DomainType> getAll() {
+		return (Collection<DomainType>)sessionFactory.getCurrentSession().createCriteria(domainClass.getClass()).list();
+	}
 }
