@@ -1,7 +1,6 @@
 package org.hackers.web.rest.idea;
 
 import org.hackers.app.converter.ConvertingContainer;
-import org.hackers.app.idea.IdeaFacade;
 import org.hackers.app.idea.RestFacade;
 import org.hackers.domain.idea.Idea;
 import org.hackers.web.RestAPI;
@@ -12,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collection;
+
 
 @Controller
-@RequestMapping("/api/idea/{id}")
+@RequestMapping("/api/idea")
 public class IdeaRestController extends RestAPI<Idea,IdeaForm> {
 
 	@Autowired
@@ -25,12 +26,22 @@ public class IdeaRestController extends RestAPI<Idea,IdeaForm> {
 
 	@Override
 	public Idea get(@PathVariable Long id) {
+		return ideaFacade.get(id);
+	}
+
+	@Override
+	public Collection<Idea> get() {
+		return ideaFacade.get();
+	}
+
+	@Override
+	public Idea post(@RequestBody IdeaForm ideaForm) {
 		return null;  //To change body of implemented methods use File | Settings | File Templates.
 	}
 
 	@Override
-	public void put(@RequestBody IdeaForm ideaForm) {
-		ideaFacade.put(new ConvertingContainer<>(ideaFormIdeaConverter, ideaForm));
+	public Idea put(@PathVariable Long id, @RequestBody IdeaForm ideaForm) {
+		return ideaFacade.put(new ConvertingContainer<>(ideaFormIdeaConverter, ideaForm));
 	}
 
 	@Override
