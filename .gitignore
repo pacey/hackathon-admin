@@ -1,4 +1,4 @@
-workspace.xml
+.idea/
 *.iml
 *.properties
 *.db

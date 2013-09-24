@@ -4,9 +4,10 @@ import org.hackers.domain.container.Container;
 
 import java.util.Collection;
 
-public interface RestFacade<DomainType> {
+public interface RestFacade<DTOType, DomainType> {
 	Collection<DomainType> get();
 	DomainType get(Long id);
-	DomainType put(Container<DomainType> dtoType);
+	DomainType put(Long id, Container<DTOType> dtoType);
+	DomainType post(Container<DTOType> dtoType);
 	void delete(Long id);
 }

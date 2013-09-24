@@ -2,8 +2,8 @@ package org.hackers.app.idea;
 
 import org.hackers.domain.container.Container;
 import org.hackers.domain.idea.Idea;
+import org.hackers.domain.idea.IdeaDTO;
 import org.hackers.domain.idea.IdeaService;
-import org.hackers.domain.idea.IdeaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import java.util.Collection;
 
 @Service
 @Transactional
-public class IdeaFacade implements RestFacade<Idea> {
+public class IdeaFacadeImpl implements RestFacade<IdeaDTO, Idea> {
 
 	@Autowired
 	private IdeaService ideaService;
@@ -24,18 +24,23 @@ public class IdeaFacade implements RestFacade<Idea> {
 
 	@Override
 	public Idea get(Long id) {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return ideaService.get(id);
 	}
 
 	@Override
-	public Idea put(Container<Idea> ideaContainer) {
-		Idea idea = ideaContainer.get();
-		ideaService.put(idea);
-		return idea;
+	public Idea put(Long id, Container<IdeaDTO> ideaDTOContainer) {
+		IdeaDTO ideaDTO = ideaDTOContainer.get();
+		return ideaService.put(id, ideaDTO);
+	}
+
+	@Override
+	public Idea post(Container<IdeaDTO> ideaDTOContainer) {
+		IdeaDTO ideaDTO = ideaDTOContainer.get();
+		return ideaService.post(ideaDTO);
 	}
 
 	@Override
 	public void delete(Long id) {
-		//To change body of implemented methods use File | Settings | File Templates.
+		ideaService.delete(id);
 	}
 }

@@ -12,6 +12,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Hackathon Admin</h1>
+				<h2>James Test</h2>
 			</div>
 		</div>
 	</div>

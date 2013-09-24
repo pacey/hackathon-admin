@@ -17,6 +17,14 @@
 			<artifactId>web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.hackers</groupId>
+			<artifactId>app</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hackers</groupId>
+			<artifactId>domain</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>

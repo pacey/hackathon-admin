@@ -30,6 +30,10 @@ public abstract class AbstractHibernateDAO<DomainType> implements DAO<DomainType
 		sessionFactory.getCurrentSession().delete(domainType);
 	}
 
+	public void delete(Long id){
+		delete(get(id));
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public DomainType get(Long id) {

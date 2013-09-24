@@ -1,6 +1,6 @@
 package org.hackers.domain.idea;
 
-import org.hackers.AbstractApplicationTest;
+import org.hackers.test.AbstractApplicationTest;
 import org.hackers.domain.DAO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

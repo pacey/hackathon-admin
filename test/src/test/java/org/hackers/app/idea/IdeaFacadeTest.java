@@ -1,41 +1,30 @@
 package org.hackers.app.idea;
 
-import org.hackers.AbstractApplicationTest;
+import org.hackers.test.AbstractApplicationTest;
 import org.hackers.app.converter.ConvertingContainer;
 import org.hackers.domain.idea.Idea;
-import org.hackers.web.converter.IdeaFormIdeaConverter;
+import org.hackers.domain.idea.IdeaDTO;
+import org.hackers.web.converter.IdeaFormIdeaDTOConverter;
 import org.hackers.web.rest.idea.IdeaForm;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collection;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jamesp
- * Date: 22/09/13
- * Time: 17:22
- * To change this template use File | Settings | File Templates.
- */
 public class IdeaFacadeTest extends AbstractApplicationTest {
 
 	@Autowired
-	private RestFacade<Idea> ideaFacade;
+	private RestFacade<IdeaDTO, Idea> ideaFacade;
 
 	@Autowired
-	private Converter<IdeaForm, Idea> ideaFormIdeaConverter;
+	private IdeaFormIdeaDTOConverter ideaFormIdeaDTOConverter;
 
 	@Test
-	public void put(){
+	public void post(){
 		IdeaForm ideaForm = new IdeaForm();
 		ideaForm.setDescription("Idea description");
-		Idea idea = ideaFacade.put(new ConvertingContainer<>(ideaFormIdeaConverter, ideaForm));
+		Idea idea = ideaFacade.post(new ConvertingContainer<IdeaForm, IdeaDTO>(ideaFormIdeaDTOConverter, ideaForm));
 		assertNotNull(idea);
 		assertNotNull(idea.getId());
 		assertEquals("Idea description", idea.getDescription());

@@ -1,4 +1,4 @@
-package org.hackers;
+package org.hackers.test;
 
 import org.hackers.app.config.AppConfig;
 import org.hackers.app.config.TestAppConfig;
