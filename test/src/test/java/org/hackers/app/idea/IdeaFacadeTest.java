@@ -1,32 +1,74 @@
 package org.hackers.app.idea;
 
-import org.hackers.test.AbstractApplicationTest;
 import org.hackers.app.converter.ConvertingContainer;
+import org.hackers.domain.DAO;
 import org.hackers.domain.idea.Idea;
+import org.hackers.domain.idea.IdeaBuilder;
 import org.hackers.domain.idea.IdeaDTO;
+import org.hackers.test.AbstractApplicationTest;
 import org.hackers.web.converter.IdeaFormIdeaDTOConverter;
 import org.hackers.web.rest.idea.IdeaForm;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.annotations.Test;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import java.util.Collection;
 
+import static org.testng.Assert.*;
+
+
+@Test
 public class IdeaFacadeTest extends AbstractApplicationTest {
 
 	@Autowired
 	private RestFacade<IdeaDTO, Idea> ideaFacade;
 
 	@Autowired
+	private DAO<Idea> ideaDAO;
+
+	@Autowired
 	private IdeaFormIdeaDTOConverter ideaFormIdeaDTOConverter;
 
-	@Test
+	public void delete(){
+		Idea idea = createIdeaData();
+		ideaFacade.delete(idea.getId());
+		idea = ideaDAO.get(idea.getId());
+		assertNull(idea);
+	}
+
+	public void getAll(){
+		createIdeaData();
+		Collection<Idea> ideaCollection = ideaFacade.get();
+		assertTrue(ideaCollection.size() >= 1);
+	}
+
+	public void get(){
+		Idea idea = createIdeaData();
+		Idea otherIdea = ideaFacade.get(idea.getId());
+		assertEquals(otherIdea.getId(), idea.getId());
+		assertEquals(otherIdea.getDescription(), idea.getDescription());
+	}
+
+	public void put(){
+		Idea idea = createIdeaData();
+		IdeaForm ideaForm = new IdeaForm();
+		ideaForm.setDescription("Put description");
+		Idea updatedIdea = ideaFacade.put(idea.getId(), new ConvertingContainer<>(ideaFormIdeaDTOConverter, ideaForm));
+		assertEquals(updatedIdea.getId(), idea.getId());
+		assertEquals(updatedIdea.getDescription(), ideaForm.getDescription());
+	}
+
 	public void post(){
 		IdeaForm ideaForm = new IdeaForm();
-		ideaForm.setDescription("Idea description");
-		Idea idea = ideaFacade.post(new ConvertingContainer<IdeaForm, IdeaDTO>(ideaFormIdeaDTOConverter, ideaForm));
-		assertNotNull(idea);
+		ideaForm.setDescription("Post description");
+		Idea idea = ideaFacade.post(new ConvertingContainer<>(ideaFormIdeaDTOConverter, ideaForm));
 		assertNotNull(idea.getId());
-		assertEquals("Idea description", idea.getDescription());
+		assertEquals(idea.getDescription(), ideaForm.getDescription());
+	}
+
+	private Idea createIdeaData(){
+		IdeaBuilder ideaBuilder = new IdeaBuilder();
+		Idea dummyIdea =  ideaBuilder.setDescription("Test description").build();
+		ideaDAO.saveOrUpdate(dummyIdea);
+		return dummyIdea;
 	}
 }

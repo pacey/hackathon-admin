@@ -1,20 +1,20 @@
 package org.hackers.domain.idea;
 
-import org.hackers.test.AbstractApplicationTest;
 import org.hackers.domain.DAO;
-import org.junit.Test;
+import org.hackers.test.AbstractApplicationTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.annotations.Test;
 
 import java.util.Date;
 
-import static junit.framework.TestCase.assertNotNull;
+import static org.testng.Assert.assertNotNull;
 
+@Test
 public class HibernateIdeaDAOTest extends AbstractApplicationTest {
 
 	@Autowired
 	private DAO<Idea> hibernateIdeaDAO;
 
-	@Test
 	public void save(){
 		Date date = new Date();
 		IdeaBuilder ideaBuilder = new IdeaBuilder();

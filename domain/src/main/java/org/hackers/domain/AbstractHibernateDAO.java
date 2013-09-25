@@ -37,12 +37,12 @@ public abstract class AbstractHibernateDAO<DomainType> implements DAO<DomainType
 	@Override
 	@SuppressWarnings("unchecked")
 	public DomainType get(Long id) {
-		return (DomainType)sessionFactory.getCurrentSession().get(domainClass.getClass(), id);
+		return (DomainType)sessionFactory.getCurrentSession().get(domainClass, id);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public Collection<DomainType> getAll() {
-		return (Collection<DomainType>)sessionFactory.getCurrentSession().createCriteria(domainClass.getClass()).list();
+		return (Collection<DomainType>)sessionFactory.getCurrentSession().createCriteria(domainClass).list();
 	}
 }
