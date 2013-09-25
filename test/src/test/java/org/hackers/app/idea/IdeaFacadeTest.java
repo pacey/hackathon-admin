@@ -45,7 +45,7 @@ public class IdeaFacadeTest extends AbstractApplicationTest {
 		Idea idea = createIdeaData();
 		Idea otherIdea = ideaFacade.get(idea.getId());
 		assertEquals(otherIdea.getId(), idea.getId());
-		assertEquals(otherIdea.getDescription(), idea.getDescription());
+		assertEquals(otherIdea, idea);
 	}
 
 	public void put(){
