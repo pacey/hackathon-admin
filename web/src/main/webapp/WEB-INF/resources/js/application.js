@@ -1,12 +1,14 @@
-define(["marionette", "navigation/navItemCollectionView"], function(Marionette, NavItemCollectionView){
+define(["marionette", "navigation/navigationController"], function(Marionette, NavigationController){
 	var application = new Marionette.Application();
 	application.addInitializer(function(options){
-		console.log("application started");
+		application.addRegions({
+			mainRegion: "#content",
+			navigationRegion: "#navigation"
+		});
+		var navigationController = new NavigationController({
+			navigationRegion: application.navigationRegion
+		});
+		navigationController.show();
 	});
-	application.addRegions({
-		mainRegion: "#content",
-		navigationRegion: ".navbar-collapse"
-	});
-	application.navigationRegion.show(new NavItemCollectionView());
 	return application;
 });

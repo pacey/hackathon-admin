@@ -1,15 +1,14 @@
-define(["marionette", "navigation/navItemCollection", "navigation/navItemView", "navigation/navItem"], function(Marionette, NavItemCollection, NavItemView, NavItem){
+define(["marionette", "navigation/navItemCollection", "navigation/navItemView"], function(Marionette, NavItemCollection, NavItemView){
 	return Marionette.CollectionView.extend({
 		tagName: "ul",
-		className: "nav navbar-nav",
+		className: function(){
+			var className = "nav navbar-nav";
+			if(this.options.right){
+				className += " navbar-right"
+			}
+			return className;
+		},
 		collection: NavItemCollection,
-		itemView: NavItemView,
-		initialize: function(){
-			this.collection = new NavItemCollection();
-			this.collection.add(new NavItem({
-				href: "#/idea/add",
-				text: "Add idea"
-			}));
-		}
+		itemView: NavItemView
 	});
 });
