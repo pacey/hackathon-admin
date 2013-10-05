@@ -1,4 +1,4 @@
-define(["marionette", "handlebars", "navigation/navItem", "text!navigation/navItem.html"], function(Marionette, Handlebars, NavItem, NavItemTemplate){
+define(["marionette", "handlebars", "navigation/navItem", "text!navigation/navItem.hbs"], function(Marionette, Handlebars, NavItem, NavItemTemplate){
 	return Marionette.ItemView.extend({
 		tagName: "li",
 		className: function(){

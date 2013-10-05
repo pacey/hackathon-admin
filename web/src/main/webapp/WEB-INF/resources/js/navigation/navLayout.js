@@ -1,4 +1,4 @@
-define(["marionette", "handlebars", "text!navigation/navLayout.html"], function(Marionette, Handlebars, navLayout){
+define(["marionette", "handlebars", "text!navigation/navLayout.hbs"], function(Marionette, Handlebars, navLayout){
 	return Marionette.Layout.extend({
 		tagName: "nav",
 		className: "navbar navbar-default",
