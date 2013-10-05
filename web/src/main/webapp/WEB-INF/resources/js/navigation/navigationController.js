@@ -5,13 +5,15 @@ define(["marionette", "navigation/navLayout", "navigation/navItemCollectionView"
 			this.siteNavigationItems = new NavItemCollection([
 				new NavItem({
 					text: "Add idea",
-					href: "#/idea/add"
+					href: "#/idea/add",
+					icon: "glyphicon-plus"
 				})
 			]);
 			this.userNavigationItems = new NavItemCollection([
 				new NavItem({
 					text: "Login",
-					href: "#/login"
+					href: "#/login",
+					icon: "glyphicon-user"
 				})
 			]);
 		},
