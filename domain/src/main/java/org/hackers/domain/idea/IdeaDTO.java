@@ -5,10 +5,10 @@ import java.util.Date;
 public class IdeaDTO {
 
 	private Long id;
-	private Date createDate;
-	private Date updateDate;
 	private String title;
 	private String description;
+	private Date createDate;
+	private Date updateDate;
 
 	public Long getId() {
 		return id;

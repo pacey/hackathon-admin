@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-public abstract class RestAPI<DomainType, DTOType, FormType> {
+public abstract class RestAPI<DomainType, FormType> {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public abstract @ResponseBody DomainType get(@PathVariable Long id);
 

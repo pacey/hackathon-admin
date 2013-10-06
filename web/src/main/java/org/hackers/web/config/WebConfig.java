@@ -35,9 +35,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
 	}
 
-	@Bean
-	public MappingJackson2HttpMessageConverter getJacksonMessageConverter() {
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		return converter;
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.add(new MappingJackson2HttpMessageConverter());
 	}
+
 }

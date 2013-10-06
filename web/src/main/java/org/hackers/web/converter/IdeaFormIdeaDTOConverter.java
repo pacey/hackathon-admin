@@ -12,6 +12,10 @@ public class IdeaFormIdeaDTOConverter implements Converter<IdeaForm, IdeaDTO> {
 	public IdeaDTO convert(IdeaForm ideaForm) {
 		IdeaDTO ideaDTO = new IdeaDTO();
 		ideaDTO.setDescription(ideaForm.getDescription());
+		ideaDTO.setTitle(ideaForm.getTitle());
+		ideaDTO.setId(ideaForm.getId());
+		ideaDTO.setCreateDate(ideaForm.getCreateDate());
+		ideaDTO.setUpdateDate(ideaForm.getUpdateDate());
 		return ideaDTO;
 	}
 

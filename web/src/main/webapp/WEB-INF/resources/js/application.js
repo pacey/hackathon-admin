@@ -1,4 +1,4 @@
-define(["marionette", "backbone", "navigation/navigationController", "routes/home/homeController"], function(Marionette, Backbone, NavigationController, HomeController){
+define(["marionette", "backbone", "navigation/navigationController", "routes/home/homeController", "routes/idea/ideaSaveController"], function(Marionette, Backbone, NavigationController, HomeController, IdeaSaveController){
 	var application = new Marionette.Application();
 	application.addInitializer(function(options){
 		application.addRegions({
@@ -10,6 +10,9 @@ define(["marionette", "backbone", "navigation/navigationController", "routes/hom
 		});
 		navigationController.show();
 		var homeController = new HomeController({
+			contentRegion: application.contentRegion
+		});
+		var ideaSaveController = new IdeaSaveController({
 			contentRegion: application.contentRegion
 		});
 		Backbone.history.start();

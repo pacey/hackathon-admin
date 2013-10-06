@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -30,12 +31,17 @@ public class IdeaFacadeImpl implements RestFacade<IdeaDTO, Idea> {
 	@Override
 	public Idea put(Long id, Container<IdeaDTO> ideaDTOContainer) {
 		IdeaDTO ideaDTO = ideaDTOContainer.get();
+		Date date = new Date();
+		ideaDTO.setUpdateDate(date);
 		return ideaService.put(id, ideaDTO);
 	}
 
 	@Override
 	public Idea post(Container<IdeaDTO> ideaDTOContainer) {
 		IdeaDTO ideaDTO = ideaDTOContainer.get();
+		Date date = new Date();
+		ideaDTO.setCreateDate(date);
+		ideaDTO.setUpdateDate(date);
 		return ideaService.post(ideaDTO);
 	}
 

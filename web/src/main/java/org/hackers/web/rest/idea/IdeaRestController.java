@@ -17,7 +17,7 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/api/idea")
-public class IdeaRestController extends RestAPI<Idea, IdeaDTO, IdeaForm> {
+public class IdeaRestController extends RestAPI<Idea, IdeaForm> {
 
 	@Autowired
 	private RestFacade<IdeaDTO, Idea> ideaFacade;
