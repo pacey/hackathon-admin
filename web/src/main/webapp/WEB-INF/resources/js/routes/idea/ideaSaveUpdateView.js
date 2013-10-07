@@ -1,10 +1,6 @@
 define(["marionette", "handlebars", "text!routes/idea/ideaSaveUpdateTemplate.hbs"], function(Marionette, Handlebars, ideaSaveUpdateTemplate){
 	return Marionette.ItemView.extend({
-		tagName: "form",
-		attributes: {
-			id: "ideaForm",
-			role: "form"
-		},
+		className: "col-md-8 col-md-offset-2",
 		template: Handlebars.compile(ideaSaveUpdateTemplate),
 		ui: {
 			title: "#title",

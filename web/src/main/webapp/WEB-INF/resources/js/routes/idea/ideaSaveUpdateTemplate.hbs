@@ -1,22 +1,24 @@
-<div class="form-group">
-	<label for="title">Title</label>
-	<input type="text" class="form-control" id="title" placeholder="A short title/summary of your idea, 100 characters" value="{{title}}" maxlength="100" />
-</div>
-<div class="form-group">
-	<label for="description">Description</label>
-	<textarea rows="4" class="form-control" id="description" placeholder="The full description covering all the ins and outs of your hair brained idea">{{description}}</textarea>
-</div>
-<div class="form-group">
-	<button type="reset" class="btn btn-warning js-clear">
-		Clear
-	</button>
-	{{#if id}}
-		<button type="submit" class="btn btn-primary js-update">
-			<span class="glyphicon glyphicon-ok"></span> Update
+<form role="form">
+	<div class="form-group">
+		<label for="title">Title</label>
+		<input type="text" class="form-control" id="title" placeholder="A short title/summary of your idea, 100 characters" value="{{title}}" maxlength="100" />
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<textarea rows="4" class="form-control" id="description" placeholder="The full description covering all the ins and outs of your hair brained idea">{{description}}</textarea>
+	</div>
+	<div class="form-group">
+		<button type="reset" class="btn btn-warning js-clear">
+			Clear
 		</button>
+		{{#if id}}
+			<button type="submit" class="btn btn-primary js-update">
+				<span class="glyphicon glyphicon-ok"></span> Update
+			</button>
 		{{else}}
-		<button type="submit" class="btn btn-primary js-add">
-			<span class="glyphicon glyphicon-plus"></span> Add
-		</button>
-	{{/if}}
-</div>
+			<button type="submit" class="btn btn-primary js-add">
+				<span class="glyphicon glyphicon-plus"></span> Add
+			</button>
+		{{/if}}
+	</div>
+</form>

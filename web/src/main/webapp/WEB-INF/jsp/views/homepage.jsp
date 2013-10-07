@@ -10,7 +10,7 @@
 	<body>
 	<div class="container">
 		<section id="navigation"></section>
-		<section id="content"></section>
+		<section id="content" class="row"></section>
 	</div>
 	<script type="text/javascript" data-main="${pageContext.servletContext.contextPath}/resources/js/main" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js"></script>
 	</body>
