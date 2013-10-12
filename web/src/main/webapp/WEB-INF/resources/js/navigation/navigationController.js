@@ -5,8 +5,13 @@ define(["marionette", "navigation/navLayout", "navigation/navItemCollectionView"
 			this.siteNavigationItems = new NavItemCollection([
 				new NavItem({
 					text: "Add idea",
-					href: "#/idea",
+					href: "#/idea/add",
 					icon: "glyphicon-plus"
+				}),
+				new NavItem({
+					text: "Idea list",
+					href: "#/idea",
+					icon: "glyphicon-list"
 				})
 			]);
 			this.userNavigationItems = new NavItemCollection([

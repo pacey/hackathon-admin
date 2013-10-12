@@ -18,5 +18,5 @@ public abstract class RestAPI<DomainType, FormType> {
 	public abstract @ResponseBody DomainType put(@PathVariable Long id, @RequestBody FormType formType);
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public abstract void delete(@PathVariable Long id);
+	public abstract @ResponseBody Boolean delete(@PathVariable Long id);
 }

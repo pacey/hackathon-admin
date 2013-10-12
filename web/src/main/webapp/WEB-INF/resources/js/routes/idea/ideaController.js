@@ -1,4 +1,4 @@
-define(["underscore", "marionette", "routes/idea/ideaRouter", "routes/idea/idea", "routes/idea/ideaSaveUpdateView", "notification/notification"], function(_, Marionette, IdeaRouter, Idea, IdeaSaveUpdateView, Notification){
+define(["underscore", "marionette", "routes/idea/ideaRouter", "routes/idea/idea", "routes/idea/ideaSaveUpdateView", "notification/notification", "routes/idea/ideaCollection", "routes/idea/ideaCollectionView"], function(_, Marionette, IdeaRouter, Idea, IdeaSaveUpdateView, Notification, IdeaCollection, IdeaCollectionView){
 	return Marionette.Controller.extend({
 		initialize: function(options){
 			this.contentRegion = options.contentRegion;
@@ -17,20 +17,31 @@ define(["underscore", "marionette", "routes/idea/ideaRouter", "routes/idea/idea"
 					success: this.onIdeaUpdated
 				});
 			});
-			_.bindAll(this, "onIdeaAdded", "onIdeaUpdated", "show");
+			_.bindAll(this, "onIdeaAdded", "onIdeaUpdated", "showAddUpdate", "showList");
 		},
 		addIdea: function(){
-			this.show(new Idea());
+			this.showAddUpdate(new Idea());
 		},
 		updateIdea: function(ideaId){
 			var idea = new Idea({
 				id: ideaId
 			});
 			idea.fetch({
-				success: this.show
+				success: this.showAddUpdate
 			});
 		},
-		show: function(idea){
+		listIdea: function(){
+			var ideaCollection = new IdeaCollection();
+			ideaCollection.fetch({
+				success: this.showList
+			});
+		},
+		showList: function(ideaCollection){
+			this.contentRegion.show(new IdeaCollectionView({
+				collection: ideaCollection
+			}))
+		},
+		showAddUpdate: function(idea){
 			this.ideaSaveUpdateView.model = idea;
 			this.contentRegion.show(this.ideaSaveUpdateView);
 		},

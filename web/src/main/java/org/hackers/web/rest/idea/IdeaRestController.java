@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collection;
 
@@ -36,17 +37,18 @@ public class IdeaRestController extends RestAPI<Idea, IdeaForm> {
 	}
 
 	@Override
-	public Idea post(@RequestBody IdeaForm ideaForm) {
+	public @ResponseBody Idea post(@RequestBody IdeaForm ideaForm) {
 		return ideaFacade.post(new ConvertingContainer<>(ideaFormIdeaDTOConverter, ideaForm));
 	}
 
 	@Override
-	public Idea put(@PathVariable Long id, @RequestBody IdeaForm ideaForm) {
+	public @ResponseBody Idea put(@PathVariable Long id, @RequestBody IdeaForm ideaForm) {
 		return ideaFacade.put(id, new ConvertingContainer<>(ideaFormIdeaDTOConverter, ideaForm));
 	}
 
 	@Override
-	public void delete(@PathVariable Long id) {
+	public @ResponseBody Boolean delete(@PathVariable Long id) {
 		ideaFacade.delete(id);
+		return true;
 	}
 }

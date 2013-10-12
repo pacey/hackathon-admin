@@ -1,4 +1,4 @@
-define(["marionette", "backbone", "navigation/navigationController", "routes/home/homeController", "routes/idea/ideaSaveController", "notification/notificationController"], function(Marionette, Backbone, NavigationController, HomeController, IdeaSaveController, NotificationController){
+define(["marionette", "backbone", "navigation/navigationController", "routes/home/homeController", "routes/idea/ideaController", "notification/notificationController"], function(Marionette, Backbone, NavigationController, HomeController, IdeaSaveController, NotificationController){
 	var application = new Marionette.Application();
 	application.addInitializer(function(options){
 		application.addRegions({
