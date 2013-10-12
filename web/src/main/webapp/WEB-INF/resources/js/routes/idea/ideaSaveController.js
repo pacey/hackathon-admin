@@ -1,39 +1,54 @@
-define(["underscore", "marionette", "routes/idea/ideaRouter", "routes/idea/idea", "routes/idea/ideaSaveUpdateView"], function(_, Marionette, IdeaRouter, Idea, IdeaSaveUpdateView){
+define(["underscore", "marionette", "routes/idea/ideaRouter", "routes/idea/idea", "routes/idea/ideaSaveUpdateView", "notification/notification"], function(_, Marionette, IdeaRouter, Idea, IdeaSaveUpdateView, Notification){
 	return Marionette.Controller.extend({
 		initialize: function(options){
 			this.contentRegion = options.contentRegion;
+			this.notificationController = options.notificationController;
 			this.ideaRouter = new IdeaRouter({
 				controller: this
 			});
-			_.bindAll(this, "onIdeaSaved");
+			this.ideaSaveUpdateView = new IdeaSaveUpdateView();
+			this.listenTo(this.ideaSaveUpdateView, "idea:add", function(args){
+				args.model.save(null, {
+					success: this.onIdeaAdded
+				});
+			});
+			this.listenTo(this.ideaSaveUpdateView, "idea:update", function(args){
+				args.model.save(null, {
+					success: this.onIdeaUpdated
+				});
+			});
+			_.bindAll(this, "onIdeaAdded", "onIdeaUpdated", "show");
 		},
 		addIdea: function(){
-			this.currentView = new IdeaSaveUpdateView({
-				model: new Idea()
-			});
-			this.contentRegion.show(this.currentView);
-			this.listenTo(this.currentView, "idea:save", function(args){
-				args.model.save(null, {
-					success: this.onIdeaSaved
-				});
-			});
+			this.show(new Idea());
 		},
 		updateIdea: function(ideaId){
-			//TODO: this doesn't work yet
-			this.currentIdea = new Idea();
-			this.currentIdea.set("id", ideaId);
-			this.currentIdea.fetch(function(){
-				this.currentView = new IdeaSaveUpdateView({
-					model: this.currentIdea
-				});
-				this.contentRegion.show(this.currentView);
-				this.listenTo(this.currentView, "idea:save", function(args){
-
-				});
+			var idea = new Idea({
+				id: ideaId
+			});
+			idea.fetch({
+				success: this.show
 			});
 		},
-		onIdeaSaved: function(){
-			this.ideaRouter.navigate("", {
+		show: function(idea){
+			this.ideaSaveUpdateView.model = idea;
+			this.contentRegion.show(this.ideaSaveUpdateView);
+		},
+		onIdeaAdded: function(idea){
+			this.notificationController.addNotification(new Notification({
+				type: "success",
+				message: "Your idea was created successfully"
+			}));
+			this.ideaRouter.navigate("idea/" + idea.get("id"), {
+				trigger: true
+			});
+		},
+		onIdeaUpdated: function(idea){
+			this.notificationController.addNotification(new Notification({
+				type: "success",
+				message: "Your idea was updated successfully"
+			}));
+			this.ideaRouter.navigate("idea/" + idea.get("id"), {
 				trigger: true
 			});
 		}

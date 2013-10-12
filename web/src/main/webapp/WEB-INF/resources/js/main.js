@@ -6,7 +6,8 @@ requirejs.config({
 		backbone: "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min",
 		marionette: "//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.1.0-bundled/backbone.marionette.min",
 		handlebars: "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min",
-		bootstrap: "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min"
+		bootstrap: "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min",
+		moment: "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.2.1/moment.min"
 	},
 	shim: {
 		jquery: {

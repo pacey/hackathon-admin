@@ -16,10 +16,7 @@ define(["marionette", "navigation/navLayout", "navigation/navItemCollectionView"
 					icon: "glyphicon-user"
 				})
 			]);
-		},
-		show: function(){
-			var layout = this._getLayout();
-			this.navigationRegion.show(layout);
+			this.navigationRegion.show(this._getLayout());
 		},
 		_getLayout: function(){
 			var layout = new NavLayout();

@@ -7,7 +7,8 @@ define(["marionette", "handlebars", "text!routes/idea/ideaSaveUpdateTemplate.hbs
 			description: "#description"
 		},
 		triggers: {
-			"submit": "idea:save"
+			"click .js-add": "idea:add",
+			"click .js-update": "idea:update"
 		},
 		events: {
 			"change #title": "titleChanged",
