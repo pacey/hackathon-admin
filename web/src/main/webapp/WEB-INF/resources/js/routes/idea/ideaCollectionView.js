@@ -1,7 +1,8 @@
-define(["marionette", "routes/idea/ideaView"], function(Marionette, IdeaView){
+define(["marionette", "routes/idea/ideaView", "routes/idea/ideaCollectionEmptyView"], function(Marionette, IdeaView, IdeaCollectionEmptyView){
 	return Marionette.CollectionView.extend({
 		tagName: "ul",
 		className: "col-md-12 list-unstyled",
-		itemView: IdeaView
+		itemView: IdeaView,
+		emptyView: IdeaCollectionEmptyView
 	});
 });
