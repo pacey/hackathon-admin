@@ -13,6 +13,6 @@
 		<section id="notification" class="row"></section>
 		<section id="content" class="row"></section>
 	</div>
-	<script type="text/javascript" data-main="${pageContext.servletContext.contextPath}/resources/js/main" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js"></script>
+	<script type="text/javascript" data-main="${pageContext.servletContext.contextPath}/resources/js/main-built" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js"></script>
 	</body>
 </html>
