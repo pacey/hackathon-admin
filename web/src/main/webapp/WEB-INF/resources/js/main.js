@@ -34,6 +34,6 @@ requirejs.config({
     }
 });
 
-requirejs(["application", "bootstrap"], function(application) {
+require(["application", "bootstrap"], function(application) {
     application.start();
 });
